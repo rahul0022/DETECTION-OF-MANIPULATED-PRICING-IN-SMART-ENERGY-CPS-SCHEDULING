@@ -152,10 +152,10 @@ y_results = testDF[24].tolist()
 testDF = testDF.drop(24, axis=1)
 x_data = testDF.values.tolist()
 
-#Read the abnormal pricing guide for scheduling prices
-abnormal_price_list = pd.read_excel ('/COMP3217CW2Input.xlsx', sheet_name = 'AbnormalGuidelinePricing')
-abnormal_price_list = abnormal_price_list['Unit Cost'].tolist()
-print(abnormal_price_list)
+# #Read the abnormal pricing guide for scheduling prices
+# abnormal_price_list = pd.read_excel ('/COMP3217CW2Input.xlsx', sheet_name = 'AbnormalGuidelinePricing')
+# abnormal_price_list = abnormal_price_list['Unit Cost'].tolist()
+# print(abnormal_price_list)
 
 # Compute Linear problem and solve it
 answerlist=[]
@@ -177,7 +177,7 @@ for index, price_list in enumerate(x_data):
             temp.append(x)
         vars.append(temp)
         for var in vars[ind]:
-            price = abnormal_price_list[int(var.name.split('_')[2])]
+            price = price_list[int(var.name.split('_')[2])]
             c.append(price * var)
     model += lpSum(c)
                 
